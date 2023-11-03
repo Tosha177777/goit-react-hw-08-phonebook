@@ -9,16 +9,19 @@ const Header = () => {
   const authenticated = useSelector(selectAuthIsSignedIn);
   return (
     <Container maxW={`1440px`} p={`0 10px 0 10px`}>
-      <header style={{ margin: `10px 0 10px 0` }}>
+      <header style={{ padding: `10px 0 10px 0` }}>
         <nav>
           <Stack direction="row" align="center" spacing={`10px`}>
             <ChakraLink
+              _active={{ background: '#E6FFFA' }}
+              _focus={{ background: '#E6FFFA' }}
+              _hover={{
+                background: '#E6FFFA',
+              }}
               fontWeight={`500`}
               p={`10px 10px`}
-              border={`1px solid teal`}
               borderRadius={`6px`}
               color={`teal`}
-              textDecor={`none`}
               as={ReactRouterNavLink}
               to="/"
             >
@@ -27,9 +30,13 @@ const Header = () => {
             {authenticated ? (
               <>
                 <ChakraLink
+                  _active={{ background: '#E6FFFA' }}
+                  _focus={{ background: '#E6FFFA' }}
+                  _hover={{
+                    background: '#E6FFFA',
+                  }}
                   fontWeight={`500`}
                   p={`10px 10px`}
-                  border={`1px solid teal`}
                   borderRadius={`6px`}
                   color={`teal`}
                   as={ReactRouterNavLink}
@@ -38,9 +45,13 @@ const Header = () => {
                   Contacts
                 </ChakraLink>
                 <ChakraLink
+                  _active={{ background: '#E6FFFA' }}
+                  _focus={{ background: '#E6FFFA' }}
                   fontWeight={`500`}
                   p={`10px 10px`}
-                  border={`1px solid teal`}
+                  _hover={{
+                    background: '#E6FFFA',
+                  }}
                   borderRadius={`6px`}
                   color={`teal`}
                   textDecor={`none`}
@@ -53,24 +64,30 @@ const Header = () => {
             ) : (
               <>
                 <ChakraLink
+                  _active={{ background: '#E6FFFA' }}
+                  _focus={{ background: '#E6FFFA' }}
+                  _hover={{
+                    background: '#E6FFFA',
+                  }}
                   fontWeight={`500`}
                   p={`10px 10px`}
-                  border={`1px solid teal`}
                   borderRadius={`6px`}
                   color={`teal`}
-                  textDecor={`none`}
                   as={ReactRouterNavLink}
                   to="/register"
                 >
                   Registration
                 </ChakraLink>
                 <ChakraLink
+                  _active={{ background: '#E6FFFA' }}
+                  _focus={{ background: '#E6FFFA' }}
+                  _hover={{
+                    background: '#E6FFFA',
+                  }}
                   fontWeight={`500`}
                   p={`10px 10px`}
-                  border={`1px solid teal`}
                   borderRadius={`6px`}
                   color={`teal`}
-                  textDecor={`none`}
                   as={ReactRouterNavLink}
                   to="/login"
                 >

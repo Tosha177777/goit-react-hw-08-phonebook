@@ -91,13 +91,14 @@ const RegisterPage = () => {
                     validate={value => {
                       let error;
 
-                      if (value.length < 6) {
+                      if (value.length < 1) {
                         error = 'This field must be filled';
                       }
 
                       return error;
                     }}
                   />
+                  <FormErrorMessage>{errors.name}</FormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={!!errors.email && touched.email}>
                   <FormLabel htmlFor="email">Email Address</FormLabel>
@@ -110,13 +111,14 @@ const RegisterPage = () => {
                     validate={value => {
                       let error;
 
-                      if (value.length < 0) {
+                      if (value.length < 1) {
                         error = 'This field must be filled';
                       }
 
                       return error;
                     }}
                   />
+                  <FormErrorMessage>{errors.email}</FormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={!!errors.password && touched.password}>
                   <FormLabel htmlFor="password">Password</FormLabel>
