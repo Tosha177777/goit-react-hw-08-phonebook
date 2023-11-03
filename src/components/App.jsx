@@ -1,83 +1,59 @@
-import Contacts from './Form/Contacts';
-import Title from 'components/Title/Title';
-import ContactList from './ContactList/ContactItemRender';
-import Filter from './Filter/Filter';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  // addContact,
-  // deleteContact,
-  filtersChange,
-} from 'redux/contactFilterReducer';
-import {
-  selectContacts,
-  selectError,
-  selectFilter,
-  selectIsLoading,
-} from 'redux/selectors';
-import { useEffect } from 'react';
-import { ColorRing } from 'react-loader-spinner';
-import { addContacts, deleteContacts, getContacts } from 'redux/operations';
+import ContactsPage from 'pages/ContactsPage';
+import { Route, Routes } from 'react-router-dom';
+import Header from './Header/Header';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { refreshThunk } from 'redux/operations';
+import RestrictedRoutes from './RestrictedRoutes/RestrictedRoutes';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
+const HomePage = lazy(() => import('pages/HomePage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const ProfilePage = lazy(() => import('pages/ProfilePage'));
 const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const filters = useSelector(selectFilter);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
   useEffect(() => {
-    dispatch(getContacts());
+    dispatch(refreshThunk());
   }, [dispatch]);
-
-  const onDelete = name => {
-    dispatch(deleteContacts(name));
-  };
-
-  const handleContact = newContact => {
-    if (
-      contacts.some(
-        name => name.name.toLowerCase() === newContact.name.toLowerCase()
-      )
-    ) {
-      alert(`${newContact.name} is already in contacts`);
-      return;
-    } else if (!newContact.name || !newContact.number) {
-      alert('Fill the form');
-      return;
-    }
-
-    dispatch(addContacts(newContact));
-  };
-
-  const onFilterChange = e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'filter':
-        dispatch(filtersChange(value));
-        break;
-
-      default:
-        return;
-    }
-  };
-
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filters.toLowerCase())
-  );
   return (
-    <div>
-      <Title title={'Phonebook'}>
-        <Contacts handleContact={handleContact} />
-      </Title>
-      <Title title={'Contacts'}>
-        <Filter filter={filters} onFilterChange={onFilterChange} />
-        {isLoading && <ColorRing />}
-        {error && <p>{error}</p>}
-        {filteredContacts !== null && (
-          <ContactList contacts={filteredContacts} onDelete={onDelete} />
-        )}
-      </Title>
-    </div>
+    <Routes>
+      <Route path="/" element={<Header />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute>
+              <ContactsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/user_menu"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoutes>
+              <LoginPage />
+            </RestrictedRoutes>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoutes>
+              <RegisterPage />
+            </RestrictedRoutes>
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 export default App;

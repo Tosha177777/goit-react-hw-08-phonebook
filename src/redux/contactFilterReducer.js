@@ -14,14 +14,6 @@ const contactDetailsSlice = createSlice({
   name: 'contacts',
   initialState: appState,
   reducers: {
-    // addContact(state, action) {
-    //   state.contacts = [...state.contacts, action.payload];
-    // },
-    // deleteContact(state, action) {
-    //   state.contacts = state.contacts.filter(
-    //     contact => contact.name !== action.payload
-    //   );
-    // },
     filtersChange(state, action) {
       state.filter = action.payload;
     },

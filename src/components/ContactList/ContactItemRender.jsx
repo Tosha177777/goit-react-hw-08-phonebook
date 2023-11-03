@@ -1,3 +1,5 @@
+import { Button } from '@chakra-ui/react';
+
 const ContactItem = ({ contacts, onDelete }) => {
   return (
     <ul>
@@ -7,9 +9,14 @@ const ContactItem = ({ contacts, onDelete }) => {
             <p>
               {contact.name}: {contact.number}
             </p>
-            <button type="button" onClick={() => onDelete(contact.id)}>
+            <Button
+              variant={`ghost`}
+              colorScheme="blue"
+              type="button"
+              onClick={() => onDelete(contact.id)}
+            >
               Delete &times;
-            </button>
+            </Button>
           </li>
         );
       })}

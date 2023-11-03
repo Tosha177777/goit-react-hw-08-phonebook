@@ -1,7 +1,9 @@
+import { Heading } from '@chakra-ui/react';
+
 const Title = ({ title, children }) => {
   return (
     <>
-      <h2>{title}</h2>
+      <Heading>{title}</Heading>
       {children}
     </>
   );

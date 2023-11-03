@@ -14,11 +14,11 @@ code {
     monospace;
 }
 
-form {
+/* form {
   border: 1px solid #111;
   width: 254px;
   padding: 24px;
-}
+} */
 
 label {
   display: flex;
