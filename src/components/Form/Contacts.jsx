@@ -66,6 +66,15 @@ const Contacts = ({ handleContact }) => {
                     name="number"
                     type="tel"
                     variant="filled"
+                    validate={value => {
+                      let error;
+
+                      if (value.length < 1) {
+                        error = 'This field must be filled';
+                      }
+
+                      return error;
+                    }}
                     required
                   />
                   <FormErrorMessage>{errors.number}</FormErrorMessage>
