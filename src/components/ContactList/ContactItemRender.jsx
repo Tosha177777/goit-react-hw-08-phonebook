@@ -8,7 +8,7 @@ const ContactItem = ({ contacts, onDelete }) => {
         return (
           <ListItem key={contact.id} bg="gray.50" p={3} rounded="md" w={64}>
             <Text fontWeight={`500`}>
-              <PhoneIcon boxSize={3} />
+              <PhoneIcon boxSize={3} marginRight={2} />
               <a href={`tel:${contact.number}`}>
                 {contact.name}: {contact.number}
               </a>
